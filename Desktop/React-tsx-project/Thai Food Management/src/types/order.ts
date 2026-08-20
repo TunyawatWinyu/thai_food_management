@@ -6,6 +6,9 @@ export interface Order {
   payment: PaymentType;
   total: number;
   state: OrderStatus;
+  dish?: string;
+  discount?: number;
+  note?: string;
 }
 
 export type PaymentType = "Bancomat" | "Card" | "Cash" | "Online";

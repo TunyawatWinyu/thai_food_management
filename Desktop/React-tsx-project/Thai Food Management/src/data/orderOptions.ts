@@ -1,4 +1,8 @@
-import { type OrderStatus, type OrderType } from "../types/order";
+import {
+  type OrderStatus,
+  type OrderType,
+  type PaymentType,
+} from "../types/order";
 
 export const orderStatus: OrderStatus[] = [
   "New",
@@ -10,3 +14,9 @@ export const orderStatus: OrderStatus[] = [
   "Cancelled",
 ];
 export const orderType: OrderType[] = ["Takeaway", "Delivery", "Dine-In"];
+export const paymentType: PaymentType[] = [
+  "Bancomat",
+  "Card",
+  "Cash",
+  "Online",
+];
