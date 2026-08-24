@@ -1,10 +1,16 @@
 export interface Order {
   id: string;
   date: string;
+  time: string;
   customer: string;
   type: OrderType;
   payment: PaymentType;
-  total: number;
+  product: {
+    quantity: number;
+    name: string;
+    price: number;
+    total: number;
+  }[];
   state: OrderStatus;
   dish?: string;
   discount?: number;

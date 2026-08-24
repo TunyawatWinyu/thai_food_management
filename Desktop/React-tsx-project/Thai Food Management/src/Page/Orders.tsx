@@ -11,7 +11,7 @@ const Orders = () => {
   return (
     <main>
       <Navbar />
-      <div className="p-5">
+      <div className="px-30 py-20">
         <h1 className="text-3xl font-bold">Orders</h1>
 
         <div className="flex w-full items-center justify-between ">

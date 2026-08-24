@@ -1,17 +1,40 @@
+import { type Order } from "../types/order";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTrash, faX } from "@fortawesome/free-solid-svg-icons";
 import { orders } from "../data/order";
 import { orderStatus, orderType, paymentType } from "../data/orderOptions";
 import { useOrders } from "../contexts/OrderContext";
 import { menu } from "../data/menu";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
-type NewOrderFormProps = {
+type EditOrderPropos = {
+  order: Order;
   onClose: () => void;
 };
 
-const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
-  const { formData, setFormData, formValidation } = useOrders();
+const formatDateForInput = (date: string) => {
+  const [day, month, year] = date.split(" ");
 
+  const months: Record<string, string> = {
+    gen: "01",
+    feb: "02",
+    mar: "03",
+    apr: "04",
+    mag: "05",
+    giu: "06",
+    lug: "07",
+    ago: "08",
+    set: "09",
+    ott: "10",
+    nov: "11",
+    dic: "12",
+  };
+
+  return `${year}-${months[month]}-${day.padStart(2, "0")}`;
+};
+
+const EditOrder = ({ order, onClose }: EditOrderPropos) => {
+  const { formData, setFormData } = useOrders();
   const handlerChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
@@ -23,19 +46,13 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
     });
   };
 
-  const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
 
-    const errros = formValidation();
-
-    if (Object.keys(errros).length > 0) {
-      console.log(errros);
-      return;
-    }
-
-    console.log("form validato");
-  };
-
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
@@ -44,10 +61,10 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
       <form
         className="w-full max-w-3xl rounded-xl bg-gray-100 p-6 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
-        onSubmit={handlerSubmit}
+        // onSubmit={handlerSubmit}
       >
         <div className="flex justify-between mb-6">
-          <h2 className=" text-2xl font-semibold">New Order</h2>
+          <h2 className=" text-2xl font-semibold">Edit Order</h2>
           <button
             type="button"
             className="cursor-pointer rounded-full border-2 border-gray-400 px-2 font-semibold text-gray-600 transition duration-200 ease-in hover:border-gray-800 hover:text-gray-800"
@@ -67,7 +84,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
 
               <select
                 name="customer"
-                value={formData.customer}
+                value={order.customer}
                 onChange={handlerChange}
                 className="rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-blue-500"
               >
@@ -88,7 +105,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
               <span className="text-sm text-gray-400">Order Type</span>
               <select
                 name="order"
-                value={formData.order}
+                value={order.type}
                 onChange={handlerChange}
                 className="rounded-lg border border-gray-300 px-3 py-2 outline-none"
               >
@@ -109,7 +126,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
               <span className="text-sm text-gray-400">Date</span>
 
               <input
-                value={formData.date}
+                value={formatDateForInput(order.date)}
                 onChange={handlerChange}
                 type="date"
                 name="date"
@@ -123,7 +140,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
               <input
                 type="time"
                 name="time"
-                value={formData.time}
+                value={order.time}
                 onChange={handlerChange}
                 className="rounded-lg border border-gray-300 px-3 py-2 outline-none"
               />
@@ -134,7 +151,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
             <span className="text-sm text-gray-400">Add Product</span>
             <select
               name="dish"
-              value={formData.dish}
+              value={order.dish}
               onChange={handlerChange}
               className="rounded-lg border border-gray-300 px-3 py-2 outline-none"
             >
@@ -143,6 +160,53 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
                 return <option value={dish.name}>{dish.name}</option>;
               })}
             </select>
+            {order.product.length > 0 ? (
+              <div className="flex flex-col">
+                {order.product.map((product) => {
+                  const totalPrice = product.price * product.quantity;
+                  return (
+                    <div
+                      key={product.name}
+                      className="flex items-center justify-between border border-gray-300 px-4 py-4 first:rounded-t-2xl last:rounded-b-2xl"
+                    >
+                      <div className="flex flex-col">
+                        <p className="text-sm font-semibold">{product.name}</p>
+
+                        <span className="text-sm text-gray-500">
+                          {product.price.toFixed(2)} €
+                        </span>
+                      </div>
+
+                      <div className="flex w-60 items-center justify-between">
+                        <span className=" w-8 text-center">
+                          <span className="border border-gray-200 py-1 px-2.5 mx-3 rounded-2xl cursor-pointer transition duration-200 hover:bg-gray-300">
+                            -
+                          </span>
+                          {product.quantity}
+                          <span className="border border-gray-300 py-1 px-2 mx-3 rounded-2xl cursor-pointer transition duration-200 hover:bg-gray-300">
+                            +
+                          </span>
+                        </span>
+
+                        <div className="flex items-center w-36">
+                          <span className="w-24 text-right font-bold">
+                            {totalPrice.toFixed(2)} €
+                          </span>
+
+                          <span className="ml-4 w-6 text-center cursor-pointer">
+                            <FontAwesomeIcon
+                              size="sm"
+                              icon={faTrash}
+                              color="red"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
           </label>
           <div className="grid grid-cols-2 gap-2">
             {/* Payment */}
@@ -168,7 +232,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
               <span className="text-sm text-gray-400">State</span>
               <select
                 name="state"
-                value={formData.state}
+                value={order.state}
                 onChange={handlerChange}
                 className="rounded-lg border border-gray-400 px-3 py-2 outline-none"
               >
@@ -184,7 +248,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
               <span className="text-sm text-gray-400">Discount (€)</span>
               <input
                 name="discount"
-                value={formData.discount}
+                value={order.discount}
                 onChange={handlerChange}
                 className="rounded-lg border border-gray-300 px-3 py-2 outline-none"
               />
@@ -194,7 +258,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
               <span className="text-sm text-gray-300">Note</span>
               <input
                 name="note"
-                value={formData.note}
+                value={order.note}
                 onChange={handlerChange}
                 className="rounded-lg border border-gray-400 px-3 py-2 outline-none"
               />
@@ -231,4 +295,4 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
   );
 };
 
-export default NewOrderForm;
+export default EditOrder;

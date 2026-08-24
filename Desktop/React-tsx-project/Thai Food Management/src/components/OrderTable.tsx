@@ -6,6 +6,7 @@ import { getStatusColor } from "../utils/orderUtils";
 import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import ViewOrder from "./ViewOrder";
+import EditOrder from "./EditOrder";
 
 const columns = [
   "Number",
@@ -21,6 +22,7 @@ const columns = [
 const OrderTable = () => {
   const { orders, updateOrderStatus } = useOrders();
   const [showOrder, setShowOrder] = useState<boolean>(false);
+  const [showEditOrder, setShowEditOrder] = useState<boolean>(false);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
   useEffect(() => {
@@ -68,7 +70,12 @@ const OrderTable = () => {
 
                 <td className="px-4 py-2 whitespace-nowrap">{order.payment}</td>
 
-                <td className="px-4 py-2 whitespace-nowrap">{order.total}€</td>
+                <td className="px-4 py-2 font-bold whitespace-nowrap">
+                  {order.product
+                    .reduce((sum, product) => sum + product.total, 0)
+                    .toFixed(2)}{" "}
+                  €
+                </td>
 
                 <td className="px-2 py-2 whitespace-nowrap">
                   <select
@@ -87,7 +94,7 @@ const OrderTable = () => {
                     ))}
                   </select>
                 </td>
-                <td className="flex px-6 py-2">
+                <td className="flex px-6 py-2 justify-end">
                   <span
                     className="cursor-pointer py-1 px-2 rounded-2xl transition duration-100 ease-in hover:bg-gray-200"
                     onClick={() => {
@@ -97,7 +104,13 @@ const OrderTable = () => {
                   >
                     <FontAwesomeIcon icon={faEye} size="sm" />
                   </span>
-                  <span className="cursor-pointer py-1 px-2 transition duration-100 rounded-2xl ease-in hover:bg-gray-200">
+                  <span
+                    className="cursor-pointer py-1 px-2 transition duration-100 rounded-2xl ease-in hover:bg-gray-200"
+                    onClick={() => {
+                      setShowEditOrder(true);
+                      setSelectedOrder(order);
+                    }}
+                  >
                     <FontAwesomeIcon icon={faPen} size="sm" />
                   </span>
                   <span className="cursor-pointer py-1 px-2 rounded-2xl transition duration-100 ease-in hover:bg-red-200">
@@ -115,6 +128,14 @@ const OrderTable = () => {
           order={selectedOrder}
           onClose={() => {
             setShowOrder(false);
+          }}
+        />
+      )}
+      {showEditOrder && selectedOrder && (
+        <EditOrder
+          order={selectedOrder}
+          onClose={() => {
+            setShowEditOrder(false);
           }}
         />
       )}
