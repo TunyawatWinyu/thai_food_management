@@ -6,12 +6,12 @@ import { useState } from "react";
 import NewOrderForm from "../components/NewOrderForm";
 
 const Orders = () => {
-  const [showForm, setShowForm] = useState<Boolean>(false);
+  const [showForm, setShowForm] = useState<boolean>(false);
   const { orders } = useOrders();
   return (
     <main>
       <Navbar />
-      <div className="p-8">
+      <div className="p-5">
         <h1 className="text-3xl font-bold">Orders</h1>
 
         <div className="flex w-full items-center justify-between ">

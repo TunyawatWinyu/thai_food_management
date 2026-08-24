@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./Page/Dashboard";
 import { useEffect } from "react";
 import Orders from "./Page/Orders";
-import NewOrderForm from "./components/newOrderForm";
+import Menu from "./Page/Menu";
 
 function App() {
   const navigate = useNavigate();
@@ -16,12 +16,12 @@ function App() {
     <div className="min-h-screen bg-gray-100">
       <Sidebar />
 
-      <main className="ml-64 p-8">
+      <main className="ml-64">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/orders" element={<Orders />} />
-          <Route path="/new-order" element={<NewOrderForm />} />
+          <Route path="/menu" element={<Menu />} />
         </Routes>
       </main>
     </div>

@@ -1,7 +1,11 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useOrders } from "../contexts/OrderContext";
 import { orderStatus } from "../data/orderOptions";
-import { type OrderStatus } from "../utils/orderUtils";
+import { type Order, type OrderStatus } from "../types/order";
 import { getStatusColor } from "../utils/orderUtils";
+import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
+import ViewOrder from "./ViewOrder";
 
 const columns = [
   "Number",
@@ -11,12 +15,17 @@ const columns = [
   "Payment",
   "Total",
   "State",
-  "Azioni",
+  "Action",
 ];
 
 const OrderTable = () => {
   const { orders, updateOrderStatus } = useOrders();
+  const [showOrder, setShowOrder] = useState<boolean>(false);
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
+  useEffect(() => {
+    console.log("SHOW ORDER:", showOrder);
+  }, [showOrder]);
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
       <table className="w-full">
@@ -24,15 +33,20 @@ const OrderTable = () => {
           <tr className="text-left text-sm text-gray-500">
             {columns.map((column) => {
               const isTotalOrState = column === "Total" || column === "State";
+              const isActions = column === "Action";
 
               return (
                 <th
                   key={column}
-                  className={`py-4 font-medium ${
-                    isTotalOrState ? "px-2" : "px-6"
+                  className={` py-2 font-medium ${
+                    isActions
+                      ? "px-6 text-right"
+                      : isTotalOrState
+                        ? "px-2"
+                        : "px-6"
                   }`}
                 >
-                  {column}
+                  <span>{column}</span>
                 </th>
               );
             })}
@@ -41,26 +55,28 @@ const OrderTable = () => {
         <tbody>
           {orders.map((order) => {
             return (
-              <tr key={order.id} className="border-b border-gray-100">
-                <td className="px-6 py-4 font-medium">{order.id}</td>
+              <tr key={order.id} className="border-b text-sm border-gray-100">
+                <td className="px-4 py-2 whitespace-nowrap">{order.id}</td>
 
-                <td className="px-6 py-4">{order.date}</td>
+                <td className="px-4 py-2 whitespace-nowrap">{order.date}</td>
 
-                <td className="px-6 py-4">{order.customer}</td>
+                <td className="px-4 py-2 whitespace-nowrap">
+                  {order.customer}
+                </td>
 
-                <td className="px-6 py-4">{order.type}</td>
+                <td className="px-4 py-2 whitespace-nowrap">{order.type}</td>
 
-                <td className="px-6 py-4">{order.payment}</td>
+                <td className="px-4 py-2 whitespace-nowrap">{order.payment}</td>
 
-                <td className="px-6 py-4 font-medium">{order.total} €</td>
+                <td className="px-4 py-2 whitespace-nowrap">{order.total}€</td>
 
-                <td className="px-2 py-4">
+                <td className="px-2 py-2 whitespace-nowrap">
                   <select
                     value={order.state}
                     onChange={(e) =>
                       updateOrderStatus(order.id, e.target.value as OrderStatus)
                     }
-                    className={`mr-3  border px-2 py-1 rounded-xl ${getStatusColor(
+                    className={`mr-3 border px-2 py-1 rounded-2xl ${getStatusColor(
                       order.state,
                     )}`}
                   >
@@ -71,11 +87,37 @@ const OrderTable = () => {
                     ))}
                   </select>
                 </td>
+                <td className="flex px-6 py-2">
+                  <span
+                    className="cursor-pointer py-1 px-2 rounded-2xl transition duration-100 ease-in hover:bg-gray-200"
+                    onClick={() => {
+                      setSelectedOrder(order);
+                      setShowOrder(true);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faEye} size="sm" />
+                  </span>
+                  <span className="cursor-pointer py-1 px-2 transition duration-100 rounded-2xl ease-in hover:bg-gray-200">
+                    <FontAwesomeIcon icon={faPen} size="sm" />
+                  </span>
+                  <span className="cursor-pointer py-1 px-2 rounded-2xl transition duration-100 ease-in hover:bg-red-200">
+                    <FontAwesomeIcon icon={faTrash} size="sm" color="red" />
+                  </span>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+
+      {showOrder && selectedOrder && (
+        <ViewOrder
+          order={selectedOrder}
+          onClose={() => {
+            setShowOrder(false);
+          }}
+        />
+      )}
     </div>
   );
 };

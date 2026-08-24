@@ -1,30 +1,14 @@
-import { useState } from "react";
 import { orders } from "../data/order";
 import { orderStatus, orderType, paymentType } from "../data/orderOptions";
+import { useOrders } from "../contexts/OrderContext";
+import { menu } from "../data/menu";
 
 type NewOrderFormProps = {
   onClose: () => void;
 };
 
-const now = new Date();
-const date = now.toLocaleDateString("en-CA").replaceAll("/", "-");
-const time = now.toLocaleDateString("it-IT", {
-  minute: "2-digit",
-  hour: "2-digit",
-});
-
 const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
-  const [formData, setFormData] = useState({
-    customer: "",
-    order: "",
-    date: date,
-    time: time,
-    dish: "",
-    payment: "",
-    state: "",
-    discount: 0,
-    note: "",
-  });
+  const { formData, setFormData, formValidation } = useOrders();
 
   const handlerChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -37,6 +21,19 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
     });
   };
 
+  const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const errros = formValidation();
+
+    if (Object.keys(errros).length > 0) {
+      console.log(errros);
+      return;
+    }
+
+    console.log("form validato");
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
@@ -45,8 +42,21 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
       <form
         className="w-full max-w-3xl rounded-xl bg-gray-100 p-6 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
+        onSubmit={handlerSubmit}
       >
-        <h2 className="mb-6 text-2xl font-semibold">New Order</h2>
+        <div className="flex justify-between mb-6">
+          <h2 className=" text-2xl font-semibold">New Order</h2>
+          <button
+            type="button"
+            className="cursor-pointer rounded-2xl border-2 border-gray-600 px-2 font-semibold text-gray-600 transition duration-200 ease-in hover:border-gray-800 hover:text-gray-800"
+            onClick={() => {
+              console.log("CLICK X");
+              onClose();
+            }}
+          >
+            X
+          </button>
+        </div>
 
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-2">
@@ -64,7 +74,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
 
                 {orders.map((customer) => {
                   return (
-                    <option key={customer.customer} value={customer.customer}>
+                    <option key={customer.id} value={customer.customer}>
                       {customer.customer}
                     </option>
                   );
@@ -81,6 +91,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
                 onChange={handlerChange}
                 className="rounded-lg border border-gray-300 px-3 py-2 outline-none"
               >
+                <option value="">Select a type of Order</option>
                 {orderType.map((type) => {
                   return (
                     <option key={type} value={type}>
@@ -127,7 +138,9 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
               className="rounded-lg border border-gray-300 px-3 py-2 outline-none"
             >
               <option value="">Select a Dish...</option>
-              {/* mettere qui array dei piatti che è ancora da creare  */}
+              {menu.map((dish) => {
+                return <option value={dish.name}>{dish.name}</option>;
+              })}
             </select>
           </label>
           <div className="grid grid-cols-2 gap-2">
@@ -200,7 +213,7 @@ const NewOrderForm = ({ onClose }: NewOrderFormProps) => {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-gray-300 px-4 py-2 font-medium hover:bg-gray-100"
+            className="rounded-lg border border-gray-300 cursor-pointer px-4 py-2 font-medium hover:bg-gray-100"
           >
             Cancel
           </button>

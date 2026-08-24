@@ -11,6 +11,30 @@ export interface Order {
   note?: string;
 }
 
+export interface FormData {
+  customer: string;
+  order: string;
+  date: string;
+  time: string;
+  dish: string;
+  payment: string;
+  state: string;
+  discount: number;
+  note: string;
+}
+
+export type FormErrors = {
+  customer?: string;
+  order?: string;
+  date?: string;
+  time?: string;
+  dish?: string;
+  payment?: string;
+  state?: string;
+  discount?: number;
+  note?: string;
+};
+
 export type PaymentType = "Bancomat" | "Card" | "Cash" | "Online";
 
 export type OrderType = "Takeaway" | "Delivery" | "Dine-In";
