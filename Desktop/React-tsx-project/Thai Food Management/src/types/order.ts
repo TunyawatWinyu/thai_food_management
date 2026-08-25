@@ -6,6 +6,7 @@ export interface Order {
   type: OrderType;
   payment: PaymentType;
   product: {
+    id: number;
     quantity: number;
     name: string;
     price: number;
@@ -23,6 +24,7 @@ export interface FormData {
   date: string;
   time: string;
   dish: string;
+  product: Order["product"];
   payment: string;
   state: string;
   discount: number;

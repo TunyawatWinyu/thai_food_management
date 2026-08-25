@@ -29,8 +29,8 @@ const OrderTable = () => {
     console.log("SHOW ORDER:", showOrder);
   }, [showOrder]);
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
-      <table className="w-full">
+    <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
+      <table className="w-full min-w-[250]">
         <thead className="border-b border-gray-200 bg-gray-50">
           <tr className="text-left text-sm text-gray-500">
             {columns.map((column) => {
@@ -94,28 +94,30 @@ const OrderTable = () => {
                     ))}
                   </select>
                 </td>
-                <td className="flex px-6 py-2 justify-end">
-                  <span
-                    className="cursor-pointer py-1 px-2 rounded-2xl transition duration-100 ease-in hover:bg-gray-200"
-                    onClick={() => {
-                      setSelectedOrder(order);
-                      setShowOrder(true);
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faEye} size="sm" />
-                  </span>
-                  <span
-                    className="cursor-pointer py-1 px-2 transition duration-100 rounded-2xl ease-in hover:bg-gray-200"
-                    onClick={() => {
-                      setShowEditOrder(true);
-                      setSelectedOrder(order);
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faPen} size="sm" />
-                  </span>
-                  <span className="cursor-pointer py-1 px-2 rounded-2xl transition duration-100 ease-in hover:bg-red-200">
-                    <FontAwesomeIcon icon={faTrash} size="sm" color="red" />
-                  </span>
+                <td className="px-6 py-2 ">
+                  <div className="flex justify-end">
+                    <span
+                      className="cursor-pointer py-1 px-2 rounded-2xl transition duration-100 ease-in hover:bg-gray-200"
+                      onClick={() => {
+                        setSelectedOrder(order);
+                        setShowOrder(true);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faEye} size="sm" />
+                    </span>
+                    <span
+                      className="cursor-pointer py-1 px-2 transition duration-100 rounded-2xl ease-in hover:bg-gray-200"
+                      onClick={() => {
+                        setShowEditOrder(true);
+                        setSelectedOrder(order);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faPen} size="sm" />
+                    </span>
+                    <span className="cursor-pointer py-1 px-2 rounded-2xl transition duration-100 ease-in hover:bg-red-200">
+                      <FontAwesomeIcon icon={faTrash} size="sm" color="red" />
+                    </span>
+                  </div>
                 </td>
               </tr>
             );

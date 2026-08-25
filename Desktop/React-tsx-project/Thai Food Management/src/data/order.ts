@@ -8,18 +8,21 @@ export const orders: Order[] = [
     customer: "Elena Greco",
     product: [
       {
+        id: 10,
         quantity: 2,
         name: "Pad Thai Goong",
         price: 15,
         total: 30,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 11,
         quantity: 1,
         name: "Tom Kha Gai",
         price: 13,
@@ -37,12 +40,14 @@ export const orders: Order[] = [
     customer: "Marco Bianchi",
     product: [
       {
+        id: 1,
         quantity: 1,
         name: "Pad Thai",
         price: 14,
         total: 14,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
@@ -60,18 +65,21 @@ export const orders: Order[] = [
     customer: "Davide Lombardi",
     product: [
       {
+        id: 3,
         quantity: 2,
         name: "Green Curry",
         price: 14,
         total: 28,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
         total: 9,
       },
       {
+        id: 7,
         quantity: 1,
         name: "Thai Fried Rice",
         price: 12,
@@ -89,12 +97,14 @@ export const orders: Order[] = [
     customer: "Giulia Conti",
     product: [
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -112,18 +122,21 @@ export const orders: Order[] = [
     customer: "Martina Costa",
     product: [
       {
+        id: 4,
         quantity: 1,
         name: "Massaman Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 10,
         quantity: 1,
         name: "Pad Thai Goong",
         price: 15,
         total: 15,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -141,18 +154,21 @@ export const orders: Order[] = [
     customer: "Luca Ferrari",
     product: [
       {
+        id: 5,
         quantity: 1,
         name: "Pad Kra Pao",
         price: 13,
         total: 13,
       },
       {
+        id: 2,
         quantity: 1,
         name: "Tom Yum Goong",
         price: 13,
         total: 13,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
@@ -170,12 +186,14 @@ export const orders: Order[] = [
     customer: "Chiara De Luca",
     product: [
       {
+        id: 6,
         quantity: 1,
         name: "Pad See Ew",
         price: 13,
         total: 13,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
@@ -193,12 +211,14 @@ export const orders: Order[] = [
     customer: "Davide Lombardi",
     product: [
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -216,18 +236,21 @@ export const orders: Order[] = [
     customer: "Andrea Moretti",
     product: [
       {
+        id: 1,
         quantity: 2,
         name: "Pad Thai",
         price: 14,
         total: 28,
       },
       {
+        id: 2,
         quantity: 1,
         name: "Tom Yum Goong",
         price: 13,
         total: 13,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
@@ -245,18 +268,21 @@ export const orders: Order[] = [
     customer: "Luca Ferrari",
     product: [
       {
+        id: 12,
         quantity: 1,
         name: "Panang Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -274,12 +300,14 @@ export const orders: Order[] = [
     customer: "Francesco Marini",
     product: [
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -297,18 +325,21 @@ export const orders: Order[] = [
     customer: "Andrea Moretti",
     product: [
       {
+        id: 4,
         quantity: 1,
         name: "Massaman Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 10,
         quantity: 1,
         name: "Pad Thai Goong",
         price: 15,
         total: 15,
       },
       {
+        id: 9,
         quantity: 2,
         name: "Spring Rolls",
         price: 7,
@@ -326,12 +357,14 @@ export const orders: Order[] = [
     customer: "Marco Bianchi",
     product: [
       {
+        id: 1,
         quantity: 1,
         name: "Pad Thai",
         price: 14,
         total: 14,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -349,24 +382,28 @@ export const orders: Order[] = [
     customer: "Chiara De Luca",
     product: [
       {
+        id: 2,
         quantity: 1,
         name: "Tom Yum Goong",
         price: 13,
         total: 13,
       },
       {
+        id: 3,
         quantity: 1,
         name: "Green Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 10,
         quantity: 1,
         name: "Pad Thai Goong",
         price: 15,
         total: 15,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
@@ -384,12 +421,14 @@ export const orders: Order[] = [
     customer: "Elena Greco",
     product: [
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -407,6 +446,7 @@ export const orders: Order[] = [
     customer: "Marco Bianchi",
     product: [
       {
+        id: 1,
         quantity: 1,
         name: "Pad Thai",
         price: 14,
@@ -424,18 +464,21 @@ export const orders: Order[] = [
     customer: "Davide Lombardi",
     product: [
       {
+        id: 3,
         quantity: 1,
         name: "Green Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 10,
         quantity: 1,
         name: "Pad Thai Goong",
         price: 15,
         total: 15,
       },
       {
+        id: 8,
         quantity: 2,
         name: "Chicken Satay",
         price: 9,
@@ -453,6 +496,7 @@ export const orders: Order[] = [
     customer: "Elena Greco",
     product: [
       {
+        id: 1,
         quantity: 1,
         name: "Pad Thai",
         price: 14,
@@ -470,18 +514,21 @@ export const orders: Order[] = [
     customer: "Davide Lombardi",
     product: [
       {
+        id: 4,
         quantity: 2,
         name: "Massaman Curry",
         price: 14,
         total: 28,
       },
       {
+        id: 2,
         quantity: 1,
         name: "Tom Yum Goong",
         price: 13,
         total: 13,
       },
       {
+        id: 10,
         quantity: 1,
         name: "Pad Thai Goong",
         price: 15,
@@ -499,24 +546,28 @@ export const orders: Order[] = [
     customer: "Chiara De Luca",
     product: [
       {
+        id: 3,
         quantity: 1,
         name: "Green Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 10,
         quantity: 1,
         name: "Pad Thai Goong",
         price: 15,
         total: 15,
       },
       {
+        id: 9,
         quantity: 2,
         name: "Spring Rolls",
         price: 7,
         total: 14,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -534,18 +585,21 @@ export const orders: Order[] = [
     customer: "Davide Lombardi",
     product: [
       {
+        id: 5,
         quantity: 2,
         name: "Pad Kra Pao",
         price: 13,
         total: 26,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -563,12 +617,14 @@ export const orders: Order[] = [
     customer: "Giulia Conti",
     product: [
       {
+        id: 1,
         quantity: 1,
         name: "Pad Thai",
         price: 14,
         total: 14,
       },
       {
+        id: 2,
         quantity: 1,
         name: "Tom Yum Goong",
         price: 13,
@@ -586,12 +642,14 @@ export const orders: Order[] = [
     customer: "Luca Ferrari",
     product: [
       {
+        id: 6,
         quantity: 1,
         name: "Pad See Ew",
         price: 13,
         total: 13,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
@@ -609,12 +667,14 @@ export const orders: Order[] = [
     customer: "Chiara De Luca",
     product: [
       {
+        id: 12,
         quantity: 1,
         name: "Panang Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -632,12 +692,14 @@ export const orders: Order[] = [
     customer: "Elena Greco",
     product: [
       {
+        id: 2,
         quantity: 1,
         name: "Tom Yum Goong",
         price: 13,
         total: 13,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
@@ -655,18 +717,21 @@ export const orders: Order[] = [
     customer: "Martina Costa",
     product: [
       {
+        id: 4,
         quantity: 1,
         name: "Massaman Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 5,
         quantity: 1,
         name: "Pad Kra Pao",
         price: 13,
         total: 13,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
@@ -684,12 +749,14 @@ export const orders: Order[] = [
     customer: "Marco Bianchi",
     product: [
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -707,18 +774,21 @@ export const orders: Order[] = [
     customer: "Martina Costa",
     product: [
       {
+        id: 1,
         quantity: 1,
         name: "Pad Thai",
         price: 14,
         total: 14,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,
@@ -736,12 +806,14 @@ export const orders: Order[] = [
     customer: "Martina Costa",
     product: [
       {
+        id: 10,
         quantity: 1,
         name: "Pad Thai Goong",
         price: 15,
         total: 15,
       },
       {
+        id: 11,
         quantity: 1,
         name: "Tom Kha Gai",
         price: 13,
@@ -759,18 +831,21 @@ export const orders: Order[] = [
     customer: "Giulia Conti",
     product: [
       {
+        id: 3,
         quantity: 1,
         name: "Green Curry",
         price: 14,
         total: 14,
       },
       {
+        id: 9,
         quantity: 1,
         name: "Spring Rolls",
         price: 7,
         total: 7,
       },
       {
+        id: 8,
         quantity: 1,
         name: "Chicken Satay",
         price: 9,

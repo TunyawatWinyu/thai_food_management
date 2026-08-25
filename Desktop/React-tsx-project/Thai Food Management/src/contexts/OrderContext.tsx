@@ -26,12 +26,13 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     minute: "2-digit",
     hour: "2-digit",
   });
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     customer: "",
     order: "",
     date: date,
     time: time,
     dish: "",
+    product: [],
     payment: "",
     state: "",
     discount: 0,
