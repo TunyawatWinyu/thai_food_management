@@ -71,7 +71,7 @@ const EditOrder = ({ order, onClose }: EditOrderPropos) => {
               ? {
                   ...product,
                   quantity: product.quantity + 1,
-                  price: product.quantity * product.price,
+                  total: (product.quantity + 1) * product.price,
                 }
               : product,
           )
@@ -211,7 +211,7 @@ const EditOrder = ({ order, onClose }: EditOrderPropos) => {
               <span className="text-sm text-gray-400">Add Product</span>
               <select
                 name="dish"
-                value={order.dish}
+                value={formData.dish}
                 onChange={handlerChange}
                 className="rounded-lg border border-gray-300 px-3 py-2 outline-none"
                 onClick={handlerAddProduct}
